@@ -3,7 +3,7 @@
 	padding-top: 0.5vh;
 	font-size: 20px;
 	margin: 0 auto;
-	width: 46%;
+	width: 44%;
 	font-family: 'Roboto', sans-serif;
 	justify-content: space-between;
 }
@@ -19,7 +19,7 @@ hr {
 #main_part{
 	padding-top: 1vh;
 	margin: 0 auto;
-	width: 46%;
+	width: 44%;
 	font-size: 15px;
 	font-family: 'Roboto', sans-serif;
 }
@@ -29,10 +29,10 @@ desno {
 lijevo{
 }
 #footer{
-	max-width: 46%;
+	max-width: 44%;
 	display: flex;
 	justify-content: flex-start;
-	margin-left: 27%;
+	margin-left: 28%;
 	font-family: 'Roboto', sans-serif;
 }
 #githuby{
