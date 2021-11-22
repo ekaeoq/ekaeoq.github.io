@@ -29,7 +29,7 @@ desno {
 lijevo{
 }
 #footer{
-	max-width: 44%;
+	max-width: 45%;
 	display: flex;
 	justify-content: flex-start;
 	margin-left: 28%;
@@ -52,4 +52,7 @@ lijevo{
 	margin-right: 250px;
 	text-decoration: none;
 	color: DodgerBlue;
+}
+#qut{
+	font-size: 15px;
 }
