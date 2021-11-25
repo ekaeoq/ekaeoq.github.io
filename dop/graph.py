@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 
 #cba wiht this shit rucno bum izracunal i del vure priblizno jesus fuck
-pon=33+30+15+26+34+19+40+5015:27
-26:19
-34:27
-19:24
-40:28
-50:06
+pon=33+30+15+26+34+19+40
+#26:19
+#34:27
+#19:24
+#40:28
+#50:06
 uto=2
 sri=2
 cet=4
