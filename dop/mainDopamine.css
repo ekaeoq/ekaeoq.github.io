@@ -1,0 +1,58 @@
+#naslov-div {
+	display: flex;
+	padding-top: 0.5vh;
+	font-size: 20px;
+	margin: 0 auto;
+	width: 44%;
+	font-family: 'Roboto', sans-serif;
+	justify-content: space-between;
+}
+hr {
+	opacity: 0.4;
+}
+#wraper{
+	display: flex;
+	min-height: 88.5vh;
+	flex-direction: column;
+	justify-content: space-between;
+}
+#main_part{
+	padding-top: 1vh;
+	margin: 0 auto;
+	width: 44%;
+	font-size: 15px;
+	font-family: 'Roboto', sans-serif;
+}
+desno {
+	background-color: red;
+}
+lijevo{
+}
+#footer{
+	max-width: 45%;
+	display: flex;
+	justify-content: flex-start;
+	margin-left: 28%;
+	font-family: 'Roboto', sans-serif;
+}
+#githuby{
+	display: flex;
+}
+#youtubey{
+	display: flex;
+}
+#malo_desno{
+	margin-left: 5px;
+	margin-right: 100px;
+	text-decoration: none;
+	color: DodgerBlue;
+}
+#malo_desnije{
+	margin-left: 5px;
+	margin-right: 250px;
+	text-decoration: none;
+	color: DodgerBlue;
+}
+#qut{
+	font-size: 15px;
+}
