@@ -1,3 +1,4 @@
 function Redirect(){
-    location.href="../dop/indexDopamine.html";
+    location.href="../ekaeoq.github.io/dop/indexDopamine.html";
 }
+console.log("bok");
