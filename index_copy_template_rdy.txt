@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="indexJavaScript.js"></script>
 <link rel="stylesheet" href="main.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
@@ -8,26 +9,33 @@
 </head>
 <body>
 	<div id="naslov-div">
-		<p id="desno">I still don't know</p>	
+		<p id="desno">How to live your life &nbsp; - &nbsp; by yours truly for yours</p>	
 		<p id="lijevo">About</p>
 	</div>
 	<hr>
 	<div id="wraper">
-		<div id="main_part">jao</div>
+		<div id="main_part">
+			<div>
+				<!-- THIS IS YOUR TEMPLATE RETARD DA SE SJETIS DA TU IDE CONTENT DA SVAKI
+				PUT KO MAJMUN NE GLEDAS KAM TREBA KAJ NAPISAT-->
+			</div>
+
+		</div>
 		<div id="footer">
 			<div id="githuby">
-				<img src="25231.png" width="20" height="20">
+				<img src="github.png" alt="" width="20" height="20">
 				<a id="malo_desno" href="https://www.github.com/ekaeoq" target="_blank">ekaeoq</a>
 
 			</div>
 			<div id="youtubey">
-				<img src="youtube-symbol.png" width="20" height="20">
+				<img src="yt.png" alt="" width="20" height="20">
 				<a id="malo_desnije" href="https://www.youtube.com/ekaeo" target="_blank">ekaeo</a> 
 
 			</div>
-			<div>Ve bu tu trebal nekaj pametno napisat ne, pa slozit</div>
+			<div id="qut">Give me 30 minutes to masturbate and I'll spend 25 minutes finding the perfect video.</div>
 				
 		</div>
 	</div>
 </body>
 </html>
+
