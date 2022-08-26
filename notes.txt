@@ -2,4 +2,9 @@
 .x
 1)Nacrtaj strukturu stranice, jer sam obviously preretardiran i prelijen da bi jednostavno pogledal
 di mi je kaj, a mojem glupom mozgu bude lakse jednostavno videt kak je to nacrtano
+2)Trebalo bi popraviti djelove template-a, di su one proklete slike sjebane, yt i github logo, dodat ../
+3)Javascript file ne dela za sve, jer se redirect sjebe za about page koji nije u main folderu
+4)Dodaj jos liniju ispod za hover nalsova, dok se hoces vratit, also na about bi mogel
+removat taj feature, da se uopce ne moram zajebavat s onim aboutjebenim redirectom i etoga problem solved
+diD u KnOw ProGraMerS? arE= pORBLME== sOLVERS===????? evo ti resenog problema bog te jebo
 

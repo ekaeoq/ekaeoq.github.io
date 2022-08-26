@@ -52,26 +52,16 @@ lijevo{
 	margin-left: 5px;
 	margin-right: 100px;
 	text-decoration: none;
-	color: CornflowerBlue;
+	color: CadetBlue;
 }
 #malo_desnije{
 	margin-left: 5px;
 	margin-right: 250px;
 	text-decoration: none;
-	color: CornflowerBlue;
+	color: CadetBlue;
 }
 #qut{
 	font-size: 15px;
 	color: grey;
 }
-a:hover {
-  text-decoration: underline;
-}
-#plavo{
-	color: CornflowerBlue;
-	font-size: 19px;
-}
-#datum{
-	font-size: 13px;
-	color: grey;
-}
+
