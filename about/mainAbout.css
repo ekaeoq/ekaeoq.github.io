@@ -17,6 +17,7 @@ hr {
 	justify-content: space-between;
 }
 #main_part{
+	position: relative;
 	padding-top: 1vh;
 	margin: 0 auto;
 	width: 36%;
@@ -63,5 +64,18 @@ lijevo{
 #qut{
 	font-size: 15px;
 	color: grey;
+}
+#bottyhihi{
+	/*position: absolute;*/
+	/*position: absolute;*/
+	padding-top: 50vh;
+	/*jebes ovu jebenu picku materinu od retardiranog jebenog programoskoj jezika
+	 * ja bum lepo del pun html <bṛ̣> -a i boli me jebena kita
+	 * pa ako je ikome cudno evo tu si more lepo pogledat jebote zivot hocu samo pomaknut
+	 * jerbeni text dole al nejde i nejde prokeltkon neintuintivno retadirano programsko govno
+	 * tocno to je taj jebeni kurac koji mi i smeta ko html-a i likewise programiranja
+	 * jebeno kosenje trave, kosis kosis ko retard i dojdes do nekog glupog grma koji ti 
+	 * sve sjebe for nothing, just use python c++ sve je bolje od ovog glupog neintuitivnog jezika
+	 * napravljenog za retarde*/
 }
 
