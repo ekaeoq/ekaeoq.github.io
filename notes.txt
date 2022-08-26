@@ -1,0 +1,5 @@
+0)Stvai po brojevima issue-e i dok su gotovi ih oznaci s .x u novom redu
+.x
+1)Nacrtaj strukturu stranice, jer sam obviously preretardiran i prelijen da bi jednostavno pogledal
+di mi je kaj, a mojem glupom mozgu bude lakse jednostavno videt kak je to nacrtano
+
