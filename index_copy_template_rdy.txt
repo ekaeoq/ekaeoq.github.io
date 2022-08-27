@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="indexJavaScript.js"></script>
+<script src="../indexJavaScript.js"></script>
 <link rel="stylesheet" href="main.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
@@ -23,12 +23,12 @@
 		</div>
 		<div id="footer">
 			<div id="githuby">
-				<img src="github.png" alt="" width="20" height="20">
+				<img src="../github.png" alt="" width="20" height="20">
 				<a id="malo_desno" href="https://www.github.com/ekaeoq" target="_blank">ekaeoq</a>
 
 			</div>
 			<div id="youtubey">
-				<img src="yt.png" alt="" width="20" height="20">
+				<img src="../yt.png" alt="" width="20" height="20">
 				<a id="malo_desnije" href="https://www.youtube.com/ekaeo" target="_blank">ekaeo</a> 
 
 			</div>
