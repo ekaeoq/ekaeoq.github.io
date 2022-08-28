@@ -67,6 +67,12 @@ lijevo{
 a:hover {
   text-decoration: underline;
 }
+#desno:hover{
+	text-decoration: underline;
+}
+#lijevo:hover{
+	text-decoration: underline;
+}
 #plavo{
 	color: CornflowerBlue;
 	font-size: 19px;

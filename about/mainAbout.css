@@ -23,11 +23,6 @@ hr {
 	font-size: 15px;
 	font-family: 'Roboto', sans-serif;
 }
-desno {
-	background-color: red;
-}
-lijevo{
-}
 #footer{
 	/*max-width: 37%;
 	display: flex;
@@ -42,6 +37,13 @@ lijevo{
 	font-family: 'Roboto', sans-serif;
 	justify-content: space-between;
 }
+#desno:hover{
+	text-decoration: underline;
+}
+#lijevo:hover{
+	text-decoration: underline;
+}
+
 #githuby{
 	display: flex;
 }

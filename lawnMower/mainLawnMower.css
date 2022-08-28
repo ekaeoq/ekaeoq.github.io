@@ -42,6 +42,13 @@ lijevo{
 	font-family: 'Roboto', sans-serif;
 	justify-content: space-between;
 }
+#desno:hover{
+	text-decoration: underline;
+}
+#lijevo:hover{
+	text-decoration: underline;
+}
+
 #githuby{
 	display: flex;
 }
