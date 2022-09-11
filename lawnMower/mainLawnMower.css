@@ -20,8 +20,11 @@ hr {
 	padding-top: 1vh;
 	margin: 0 auto;
 	width: 36%;
-	font-size: 15px;
+	font-size: 16px;
 	font-family: 'Roboto', sans-serif;
+}
+code{
+	font-size: 15px;
 }
 desno {
 	background-color: red;
@@ -34,6 +37,7 @@ lijevo{
 	justify-content: flex-start;
 	margin-left: 20%;
 	font-family: 'Roboto', sans-serif;*/
+	padding-top: 3vh;
 	
 	display: flex;
 	font-size: 16px;
