@@ -20,13 +20,14 @@ hr {
 	padding-top: 1vh;
 	margin: 0 auto;
 	width: 36%;
-	font-size: 15px;
+	font-size: 16px;
 	font-family: 'Roboto', sans-serif;
 }
-desno {
-	background-color: red;
+b{
+	font-size: 15px;
 }
-lijevo{
+code{
+	font-size: 15px;
 }
 #footer{
 	/*max-width: 37%;
@@ -42,6 +43,13 @@ lijevo{
 	font-family: 'Roboto', sans-serif;
 	justify-content: space-between;
 }
+#desno:hover{
+	text-decoration: underline;
+}
+#lijevo:hover{
+	text-decoration: underline;
+}
+
 #githuby{
 	display: flex;
 }
@@ -52,32 +60,16 @@ lijevo{
 	margin-left: 5px;
 	margin-right: 100px;
 	text-decoration: none;
-	color: CornflowerBlue;
+	color: CadetBlue;
 }
 #malo_desnije{
 	margin-left: 5px;
 	margin-right: 250px;
 	text-decoration: none;
-	color: CornflowerBlue;
+	color: CadetBlue;
 }
 #qut{
 	font-size: 15px;
 	color: grey;
 }
-a:hover {
-  text-decoration: underline;
-}
-#desno:hover{
-	text-decoration: underline;
-}
-#lijevo:hover{
-	text-decoration: underline;
-}
-.plavo{
-	color: CornflowerBlue;
-	font-size: 19px;
-}
-.datum{
-	font-size: 13px;
-	color: grey;
-}
+

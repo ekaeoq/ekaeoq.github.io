@@ -7,4 +7,6 @@ function RedirectAbout(){
 function RedirectIndex(){
     location.href="../index.html";
 }
-console.log("bok");
+function RedirectCplusplus(){
+    location.href="cplusplus/index_cplusplus.html";
+}
