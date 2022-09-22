@@ -1,0 +1,1 @@
+vim i;g++ -xc++ i;./a.out  
