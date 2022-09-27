@@ -7,6 +7,6 @@ function RedirectAbout(){
 function RedirectIndex(){
     location.href="../index.html";
 }
-function RedirectCplusplus(){
-    location.href="cplusplus/index_cplusplus.html";
+function RedirectConsumerism(){
+    location.href="consumerism/index_cplusplus.html";
 }
