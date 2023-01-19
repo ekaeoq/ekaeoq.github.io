@@ -10,6 +10,9 @@ function RedirectIndex(){
 function RedirectConsumerism(){
     location.href="consumerism/index_cplusplus.html";
 }
+function RedirectMerisa(){
+    location.href="merisa/index_merisa.html";
+}
 function test(){
     location.href="test/index_test.html";
 }
