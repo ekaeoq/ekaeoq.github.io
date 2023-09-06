@@ -1,9 +1,13 @@
+body{
+	background-color: #1a1a1a;
+	color: white;
+}
 #naslov-div {
 	display: flex;
 	padding-top: 0.5vh;
 	font-size: 20px;
 	margin: 0 auto;
-	width: 37%;
+	width: 33%;
 	font-family: 'Roboto', sans-serif;
 	justify-content: space-between;
 }
@@ -19,15 +23,26 @@ hr {
 #main_part{
 	padding-top: 1vh;
 	margin: 0 auto;
-	width: 36%;
+	width: 31%;
 	font-size: 15px;
 	font-family: 'Roboto', sans-serif;
 }
-desno {
-	background-color: red;
+.novo{
+	margin-left: 10px;
+	font-size: 14px;
+	width: 90%;
+	padding-bottom: 0;
 }
-lijevo{
+
+.readmore{
+	padding-top: 0px;
+	margin-top: 0px;
+	font-size: 14px;
+	color: rgb(177, 177, 177);
+	margin-left: 10px;
+	margin-bottom: 30px;
 }
+
 #footer{
 	/*max-width: 37%;
 	display: flex;
@@ -38,7 +53,7 @@ lijevo{
 	display: flex;
 	font-size: 16px;
 	margin: 0 auto;
-	width: 37%;
+	width: 31%;
 	font-family: 'Roboto', sans-serif;
 	justify-content: space-between;
 }
@@ -52,13 +67,13 @@ lijevo{
 	margin-left: 5px;
 	margin-right: 100px;
 	text-decoration: none;
-	color: CornflowerBlue;
+	color: grey;
 }
 #malo_desnije{
 	margin-left: 5px;
 	margin-right: 250px;
 	text-decoration: none;
-	color: CornflowerBlue;
+	color: grey;
 }
 #qut{
 	font-size: 15px;
@@ -73,11 +88,14 @@ a:hover {
 #lijevo:hover{
 	text-decoration: underline;
 }
+.readmore:hover{
+	text-decoration: underline;
+}
 .plavo{
-	color: CornflowerBlue;
+	color: rgb(176, 176, 176);
 	font-size: 19px;
 }
 .datum{
-	font-size: 13px;
-	color: grey;
+	font-size: 14px;
+	color: rgb(89, 89, 89);
 }
