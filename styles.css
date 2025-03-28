@@ -7,20 +7,20 @@
     --sidebar-link-color: #333;
     --sidebar-link-hover-color: black;
     --caption-color: #555;
-    --section-title-color: #6a5acd;
+    --section-title-color: #8c9cff;
     --border-color: #ffffff;
 }
 
 body.dark-theme {
     --background-color: black;
     --text-color: #e0e0e0;
-    --highlight-color: #ffffff;
+    --highlight-color: #8c9cff;
     --button-bg: #444;
     --button-hover-bg: #666;
     --sidebar-link-color: #e0e0e0;
     --sidebar-link-hover-color: #9370db; 
     --caption-color: #aaa;
-    --section-title-color: #9370db;
+    --section-title-color: #8c9cff;
     --border-color: #444; 
 }
 
@@ -172,10 +172,10 @@ header {
 }
 
 .profile-pic {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     border-radius: 15%;
-    border: 3px solid var(--border-color);
+    /*border: 3px solid var(--border-color);*/
 }
 
 .logo-pic {
@@ -224,7 +224,16 @@ header {
 }
 
 .about li {
-    margin-bottom: 8px;
+    margin-bottom: 11px;
+}
+
+.about li strong{
+	display: block;
+	margin-bottom: 4px;
+}
+.text-shift {
+	display: block;
+	padding-left: 10px;
 }
 
 /* Note: Fix class name inconsistency */
