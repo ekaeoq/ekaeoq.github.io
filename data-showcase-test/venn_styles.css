@@ -1,0 +1,82 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #ffffff;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#interests {
+    text-align: center;
+}
+
+h2 {
+    color: #8c9cff;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.venn-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.venn-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+    position: absolute;
+    background-color: rgba(255, 215, 64, 0.2);
+    border: 2px solid #FFD740;
+    text-align: center;
+}
+
+.left-circle {
+    left: 0;
+    transform: translateX(20%);
+}
+
+.right-circle {
+    right: 0;
+    transform: translateX(-20%);
+    background-color: rgba(186, 104, 200, 0.2);
+    border-color: #BA68C8;
+}
+
+.venn-overlap {
+    width: 100px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 193, 7, 0.4);
+    border: 2px dashed #FFD740;
+    padding: 10px;
+    text-align: center;
+    z-index: 1;
+}
+
+.venn-circle h3, .venn-overlap h3 {
+    margin: 0 0 10px;
+    font-size: 1.1em;
+    color: #8c9cff;
+}
+
+.venn-circle ul, .venn-overlap ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
