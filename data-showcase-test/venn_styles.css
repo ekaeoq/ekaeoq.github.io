@@ -24,7 +24,7 @@ h2 {
     position: relative;
     width: 100%;
     max-width: 600px;
-    height: 300px;
+    height: 400px; /* Increased height for better spacing */
     margin: 20px auto;
     display: flex;
     justify-content: center;
@@ -32,51 +32,60 @@ h2 {
 }
 
 .venn-circle {
-    width: 200px;
-    height: 200px;
+    width: 250px; /* Larger size for more text space */
+    height: 250px;
     border-radius: 50%;
     padding: 20px;
     box-sizing: border-box;
     position: absolute;
-    background-color: rgba(255, 215, 64, 0.2);
-    border: 2px solid #FFD740;
+    background-color: rgba(255, 215, 64, 0.2); /* Light yellow background */
+    border: 2px solid #FFD740; /* Yellow border */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .left-circle {
     left: 0;
-    transform: translateX(20%);
+    transform: translateX(10%); /* Adjusted for proper spacing */
 }
 
 .right-circle {
     right: 0;
-    transform: translateX(-20%);
-    background-color: rgba(186, 104, 200, 0.2);
-    border-color: #BA68C8;
+    transform: translateX(-10%); /* Adjusted for proper spacing */
+    background-color: rgba(186, 104, 200, 0.2); /* Light purple background */
+    border-color: #BA68C8; /* Purple border */
 }
 
 .venn-overlap {
-    width: 100px;
+    width: 150px; /* Larger overlap area */
     height: 150px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 193, 7, 0.4);
-    border: 2px dashed #FFD740;
+    background-color: rgba(255, 193, 7, 0.4); /* Distinct overlap color */
+    border: 2px dashed #FFD740; /* Dashed border for contrast */
     padding: 10px;
     text-align: center;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .venn-circle h3, .venn-overlap h3 {
     margin: 0 0 10px;
     font-size: 1.1em;
-    color: #8c9cff;
+    color: #8c9cff; /* Consistent heading color */
 }
 
 .venn-circle ul, .venn-overlap ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    font-size: 0.9em; /* Smaller font to prevent overflow */
 }

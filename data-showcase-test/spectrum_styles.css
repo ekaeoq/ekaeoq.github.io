@@ -24,31 +24,41 @@ h2 {
     max-width: 600px;
     margin: 20px auto;
     text-align: center;
+    position: relative;
 }
 
 .spectrum-bar {
     position: relative;
     height: 20px;
-    background: linear-gradient(to right, #FFD740, #BA68C8);
+    background: linear-gradient(to right, #FFD740, #BA68C8); /* Gradient from yellow to purple */
     border-radius: 10px;
     margin: 10px 0;
 }
 
 .spectrum-item {
     position: absolute;
-    top: -25px;
+    top: -30px; /* Moved higher to avoid bar overlap */
     transform: translateX(-50%);
-    background-color: #ffffff;
-    padding: 2px 6px;
+    background-color: #ffffff; /* White background for contrast */
+    padding: 4px 8px;
     border-radius: 4px;
     font-size: 0.9em;
-    border: 1px solid #333;
+    border: 1px solid #333; /* Border for definition */
+    white-space: nowrap; /* Prevents text wrapping */
 }
 
 .spectrum-label {
     font-size: 1em;
     color: #333;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.left { float: left; }
-.right { float: right; }
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
