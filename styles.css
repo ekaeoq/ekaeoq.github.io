@@ -198,7 +198,7 @@ header {
     font-family: 'Inter', sans-serif;
     font-style: italic;
     margin-top: 8px;
-    text-transform: capitalize;
+    /**text-transform: capitalize;*/
 }
 
 .profile-text h1 {
@@ -230,7 +230,11 @@ header {
 .about li strong{
 	display: block;
 	margin-bottom: 4px;
+	/*font-style: italic;*/
+	font-size: 14px;
+	color: #7f8c8d;
 }
+
 .text-shift {
 	display: block;
 	padding-left: 10px;
