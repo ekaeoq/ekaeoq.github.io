@@ -1,24 +1,32 @@
 :root {
     --background-color: #ffffff;
     --text-color: #333;
-    --highlight-color: #ffffff;
+	/*darker yellow*/
+    --highlight-color: #e6b400;
+	/* lighter version - I like as well*/
+    /*--highlight-color: #ffcd1a;*/
+	
+    /*--highlight-color: #ffd740;*/
     --button-bg: #ffcc66;
     --button-hover-bg: #ffb84d;
     --sidebar-link-color: #333;
-    --sidebar-link-hover-color: black;
+    --sidebar-link-hover-color: #ccd3ff;
     --caption-color: #555;
-    --section-title-color: #8c9cff;
+    --section-title-color: #667aff;
+	/*#667aff, #8091ff*/
     --border-color: #ffffff;
 }
 
 body.dark-theme {
     --background-color: black;
     --text-color: #e0e0e0;
-    --highlight-color: #8c9cff;
+    --highlight-color: #ffd740;
+    /* mellow purplish blue : */
+	/*--highlight-color: #8c9cff;*/
     --button-bg: #444;
     --button-hover-bg: #666;
     --sidebar-link-color: #e0e0e0;
-    --sidebar-link-hover-color: #9370db; 
+    --sidebar-link-hover-color: #ccd3ff; 
     --caption-color: #aaa;
     --section-title-color: #8c9cff;
     --border-color: #444; 
@@ -233,6 +241,11 @@ header {
 	/*font-style: italic;*/
 	font-size: 14px;
 	color: #7f8c8d;
+}
+
+.narrow-text {
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .text-shift {
