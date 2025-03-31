@@ -1,0 +1,22 @@
+[writeup]depth-graph-LiDAR
+
+A short write-up about technology used to achieve high accuracy “real-time” system using LiDAR to accurately detect curbs  This project explored real-time data transmission and processing for autonomous vehicle mapping, using LiDAR. Kafka was used for data streaming, Redis for storage, OpenCV for image processing and the model used for object detection was YOLOv8 with our heavily preprocessed custom training data set. A producer-consumer system transmitted 3D vertex data, enabling detection of curbs. 
+
+We achieved high accuracy after 300 epochs, though we had a lot of synchronisation and slow rendering issues. We spent a lot of time optimising visualisation algorithms with more efficient triangulation. The system effectively simulated LiDAR-based perception, demonstrating potential for autonomous applications, but requires optimisation for speed and synchronisation.
+
+()
+As part of my reserach at the university, this project was a small cog in a bigger machine aimed at making driving safer. I was good at hardware and had friend who was really into Lidar at the time, we intially landed on using aerial photo using the drone I’ve built back in 2020(this exists… [link to my video]) and ofcourse using lidar. The ultimate goal was to detect curbs with high accuracy.
+
+What an intersting topic right? Detecting goddamn curbs. In reality, a very vast, interesting topic, especially if you’re into computer geometry, many many algorithms, notably: Convex Hull algorithms and Triangulation.
+
+But, let’s start with the bigger picture here
+
+
+
+
+
+“The Bumps in the Road” 
+
+
+
+write how “real-time system” is doing some heavy fucking lifting here, exporting ios static output, lidar data taking forever to preprocess, you can only imagine how real-time a lidar scan is lmao
