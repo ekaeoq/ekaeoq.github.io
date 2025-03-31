@@ -153,7 +153,7 @@ header {
 }
 
 .tab-link[data-target="tools"]:hover::after {
-    width: 50px; 
+    width: 10px; 
 }
 
 /* Content Styling */
