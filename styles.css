@@ -292,3 +292,54 @@ a.blog-button:hover {
 .center-image {
     text-align: center;
 }
+
+/** Footer Styling **/
+/** Footer Styling **/
+
+body {
+    min-height: 97vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+    background-color: transparent;
+    border-top: 1px solid var(--footer-border-color);
+    padding: 10px 0;
+}
+
+:root {
+    --footer-text-color: #666666;
+    --footer-border-color: #dddddd;
+}
+
+body.dark-theme {
+    --footer-text-color: #aaaaaa;
+    --footer-border-color: #555555;
+}
+
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 0.9em;
+    color: var(--footer-text-color);
+}
+
+.contact-info a {
+    color: var(--footer-text-color);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
