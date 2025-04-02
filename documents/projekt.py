@@ -136,7 +136,7 @@ def buildGrayscaleImage(vertexPositions, size=640, vertexSize=4):
 def makeLabelAndSave(vertexPositions):
     img = buildGrayscaleImage(vertexPositions)
 
-    outputDir = "/Users/lukaknez/Desktop/Projekt/Outputs"
+    outputDir = "/Users/l/Desktop/Projekt/Outputs"
 
     imageName = 'Image'
     imageType = '.jpg'
@@ -190,7 +190,7 @@ def decimateVertexes(vertices, threshold):
     return vertices[avgDistance >= threshold]
 
 if __name__ == '__main__':
-    vertexPositions = extractVertexes("/Users/lukaknez/Desktop/Projekt/Testni_modeli/serija_meritev_4/meritev1.obj")
+    vertexPositions = extractVertexes("/Users/l/Desktop/Projekt/Testni_modeli/serija_meritev_4/meritev1.obj")
     dw = decimateVertexes(vertexPositions, 0.005)
     Draw3DGraph(dw)
     print(f"Stevilo vertexov pred decimacijo: {len(vertexPositions)} Stevilo vertexov po decimaciji: {len(dw)}")
