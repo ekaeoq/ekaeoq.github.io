@@ -1,19 +1,13 @@
 :root {
     --background-color: #ffffff;
     --text-color: #333;
-	/*darker yellow*/
     --highlight-color: #e6b400;
-	/* lighter version - I like as well*/
-    /*--highlight-color: #ffcd1a;*/
-	
-    /*--highlight-color: #ffd740;*/
     --button-bg: #ffcc66;
     --button-hover-bg: #ffb84d;
     --sidebar-link-color: #333;
     --sidebar-link-hover-color: #ccd3ff;
     --caption-color: #555;
     --section-title-color: #667aff;
-	/*#667aff, #8091ff*/
     --border-color: #ffffff;
     --footer-text-color: #666666;
     --footer-border-color: #dddddd;
@@ -23,17 +17,23 @@ body.dark-theme {
     --background-color: black;
     --text-color: #e0e0e0;
     --highlight-color: #ffd740;
-    /* mellow purplish blue : */
-	/*--highlight-color: #8c9cff;*/
     --button-bg: #444;
     --button-hover-bg: #666;
     --sidebar-link-color: #e0e0e0;
-    --sidebar-link-hover-color: #ccd3ff; 
+    --sidebar-link-hover-color: #ccd3ff;
     --caption-color: #aaa;
     --section-title-color: #8c9cff;
-    --border-color: #444; 
+    --border-color: #444;
     --footer-text-color: #aaaaaa;
     --footer-border-color: #555555;
+}
+
+/* chatgpt shit - probably good */
+/* context-box = dodaje padding marings border shit + na to usprkos tome da je bounding box manji*/
+/* border-box = make sura da je untar bounding box-a taj sav padding+border i svi extra shiti on top*/
+
+* {
+    box-sizing: border-box;
 }
 
 /* General Body Styling */
@@ -46,7 +46,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-	min-height: 96vh;
+    min-height: 100vh;
 }
 
 /* Header Styling */
@@ -66,8 +66,7 @@ header {
     display: flex;
     justify-content: center;
     padding: 20px;
-    box-sizing: border-box;
-	flex: 1;
+    flex: 1;
 }
 
 /* Sidebar Styling */
@@ -84,7 +83,7 @@ header {
     cursor: pointer;
     position: relative;
     display: block;
-    width: 24px; 
+    width: 24px;
     height: 24px;
     margin-bottom: 10px;
 }
@@ -123,7 +122,7 @@ header {
     padding-bottom: 2px;
     cursor: pointer;
     position: relative;
-	display: block;
+    display: block;
 }
 
 .tab-link::after {
@@ -138,28 +137,24 @@ header {
     z-index: 1;
 }
 
-/*.tab-link:hover::after {
-    width: 50px;
-}*/
-
 .tab-link[data-target="home"]:hover::after {
-    width: 55px; 
+    width: 55px;
 }
 
 .tab-link[data-target="projects"]:hover::after {
-    width: 72.5px; 
+    width: 72.5px;
 }
 
 .tab-link[data-target="contact"]:hover::after {
-    width: 72.5px; 
+    width: 72.5px;
 }
 
 .tab-link[data-target="wood-working"]:hover::after {
-    width: 75px; 
+    width: 75px;
 }
 
 .tab-link[data-target="tools"]:hover::after {
-    width: 10px; 
+    width: 10px;
 }
 
 /* Content Styling */
@@ -186,14 +181,13 @@ header {
 }
 
 .profile-pic {
-    width: 110px;
-    height: 110px;
+    width: clamp(80px, 10vw, 110px);
+    height: clamp(80px, 10vw, 110px);
     border-radius: 15%;
-    /*border: 3px solid var(--border-color);*/
 }
 
 .logo-pic {
-    width: 600px;
+    max-width: 100%;
     height: auto;
     border: 3px solid var(--border-color);
 }
@@ -212,7 +206,6 @@ header {
     font-family: 'Inter', sans-serif;
     font-style: italic;
     margin-top: 8px;
-    /**text-transform: capitalize;*/
 }
 
 .profile-text h1 {
@@ -241,12 +234,11 @@ header {
     margin-bottom: 11px;
 }
 
-.about li strong{
-	display: block;
-	margin-bottom: 4px;
-	/*font-style: italic;*/
-	font-size: 14px;
-	color: #7f8c8d;
+.about li strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: #7f8c8d;
 }
 
 .narrow-text {
@@ -255,18 +247,17 @@ header {
 }
 
 .text-shift {
-	display: block;
-	padding-left: 10px;
+    display: block;
+    padding-left: 10px;
 }
 
-/* Note: Fix class name inconsistency */
 .highlight {
     font-weight: bold;
     color: var(--highlight-color);
 }
 
 .highlight-title {
-    font-size: 42px;
+    font-size: clamp(24px, 4vw, 42px);
     font-weight: bold;
     color: var(--text-color);
 }
@@ -299,24 +290,22 @@ a.blog-button:hover {
     text-align: center;
 }
 
-/** Footer Styling **/
-/** Footer Styling **/
-
+/* Footer Styling */
 .footer {
-    width: 30%; 
+    width: 100%;
     background-color: transparent;
-    border-top: 1px solid var(--footer-border-color); 
+    border-top: 1px solid var(--footer-border-color);
     padding: 10px 0;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
 .footer-content {
     display: flex;
-	/*margin-left: -20px; */
     justify-content: space-between;
     align-items: center;
-    width: 96%; 
-    padding: 0 20px; 
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
     font-size: 0.9em;
     color: var(--footer-text-color);
 }
@@ -330,40 +319,46 @@ a.blog-button:hover {
     text-decoration: underline;
 }
 
-
-/*ai part - kao za fixed, neznam dal to hocu"*/
-
-/*
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh; /* Ensures body spans full height 
-    padding-bottom: 40px; /* Adds space for the fixed footer to avoid overlap 
+/** Responsive - treba tu jos **/
+@media (max-width: 1000px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    .content {
+        max-width: 100%;
+    }
 }
 
-.main-container {
-    max-width: 960px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
-    /* Remove flex: 1; it's not needed for fixed positioning 
+@media (max-height: 1200px) {
+    .header-image {
+        max-height: 150px;
+    }
 }
 
-.footer {
-    position: fixed; /* Fixes it to the viewport 
-    bottom: 0; /* Sticks it to the bottom 
-    left: 0; /* Aligns it to the left edge 
-    width: 100%; /* Full viewport width 
-    background-color: transparent;
-    border-top: 1px solid var(--footer-border-color);
-    padding: 10px 0;
-    z-index: 10; /* Ensures it stays above other content */
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .contact-info {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .blog-button {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 10px;
+    }
 }
