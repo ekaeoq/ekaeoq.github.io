@@ -1,4 +1,4 @@
-import trimesh
+import trimeshZZ
 from PIL import Image
 import os
 import numpy as np

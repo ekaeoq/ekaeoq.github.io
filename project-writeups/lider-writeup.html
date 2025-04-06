@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depth-Graph LiDAR Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="files/header-light.png" alt="Header Image" class="header-image">
+    </header>
+    <div class="main-container">
+        <div class="content">
+            <h1>Depth-Graph LiDAR: Real-Time Curb Detection Using LiDAR</h1>
+            <p><strong>ABSTRACT</strong></p>
+            <p>This project explored real-time data transmission and processing for autonomous vehicle mapping, using LiDAR. Kafka was used for data streaming, Redis for storage, OpenCV for image processing, and the model used for object detection was YOLOv8 with our heavily preprocessed custom training data set. A producer-consumer system transmitted 3D vertex data, enabling detection of curbs.</p>
+            <p>We achieved high accuracy after 300 epochs, though we had a lot of synchronisation and slow rendering issues. We spent a lot of time optimising visualisation algorithms with more efficient triangulation. The system effectively simulated LiDAR-based perception, demonstrating potential for autonomous applications, but requires optimisation for speed and synchronisation.</p>
+            <p><strong>INTRO</strong></p>
+            <p>As part of my research at the university, this project was a small cog in a bigger machine aimed at making driving safer. I was good at hardware and had a friend who was really into LiDAR at the time. We initially landed on using aerial photos using the drone I’ve built back in 2020 (this exists… <a href="https://your-video-link.com" target="_blank">[link to my video]</a>) and of course using LiDAR. The ultimate goal was to detect curbs with high accuracy.</p>
+            <p>What an interesting topic, right? Detecting goddamn curbs. In reality, a very vast, complex topic, especially if you’re into computer geometry, many many algorithms, notably: Convex Hull algorithms and Triangulation.</p>
+            <p>But, let’s start with the bigger picture here. The biggest problem here was the constraint we had with the iPhone. Our bottom line was, in fact, the minimum amount of time it took an iPhone to provide with a single scan. That scan would output a huge file of vertices that we would then process.</p>
+            <p>You can only imagine how “real-time” that was. Obviously, “real-time system” is doing some heavy lifting here. The concept worked, and for our demo, we used a prerecorded stream of data that fully simulates a real-time sensor. Fancy LiDAR devices output data at 10-20Hz, instead of this <em>‘one scan per eternity’</em> claptrap.</p>
+            <p><strong>REAL-TIME DATA TRANSMISSION</strong></p>
+            <p>Let’s talk about how we achieved real-time data transmission. As previously mentioned, we used Kafka for communication and Redis for storing the data. If you’ve never used these technologies before, think of it as a pipeline where one part communicates to the other to take the data from the middleman. The middleman, in this case, is Redis.</p>
+            <p>Let’s explain it with a practical example: The first end of the pipeline (called The Producer) captures video and breaks it into individual frames, alongside additional metadata, all while that data is being stored in Redis.</p>
+            <p>Now, when the other end of the pipeline (called The Consumer) “hears” that a new frame is ready, it takes that frame from Redis and displays it. Keep in mind that the consumer is only here to <span class="highlight">display</span> information; it is not doing any detection or processing. In our case, we draw bounding boxes on our height-mapped images.</p>
+            <p>Detection and processing are obviously done by our neural network, which is just another subscriber to Kafka’s topic (think of it as a way to communicate with Kafka’s messaging system).</p>
+            <p>All of this makes this system really robust, each part having its own role in the whole curb-detecting ecosystem. If you wanted a better way to display the data, update the Consumer. Need a better detection model? Swap the complete NN part. This is worth keeping in mind for any application you might have.</p>
+            <p>What I found confusing at first is what the point of the consumer was, but the Consumer is just a “final presenter” or a so-called display unit in this pipeline. It just takes the processed data and shows human-readable data.</p>
+            <p><strong>PREPROCESSING DATA</strong></p>
+            <p>This may be the most important bit: how we extracted information from our LiDAR data clouds. You start with a .obj file from a LiDAR scan, which contains vertices in 3D space. Also, a Trimesh library was used to read .obj files.</p>
+            <p>Next, we decided on an approach where we create a grey-scale height-map from the vertices and used normalized highest/lowest points to judge how far something is or isn’t, with a grey scale. To facilitate the transformation of a 3D point cloud into a 2D height map, we conceptually positioned the camera along the z-axis, oriented to provide a top-down view of the scene. This approach involved aligning the virtual viewpoint directly above the point cloud, with the camera’s optical axis parallel to the z-axis (representing height), and subsequently adjusting its orientation to project the 3D coordinates onto the x-y plane.</p>
+            <p>To help you visualize this: Imagine you had a cloud of points in your favorite CAD software. With the camera tool, you select the top-down view, essentially removing the z-axis (in our case, our curb height). So now we have an x-y axis grid that we simply “paint” with grey tones, depending on how high or low something is on the z-axis, essentially creating a grid showing points, each representing the height of the selected point.</p>
+            <p>Those generated frames were then filtered and altered with some heavy signal processing, but that’s a topic for another day.</p>
+            <p><strong>OUTRO</strong></p>
+            <p>This was a showcase of how important data processing is before even coming to the ML part. Data dictates how well a model is going to perform. You add anomaly by adding noise, etc.</p>
+            <p>A lot of time is invested in choosing the right technology for your use case. When talking to our mentors, the LiDAR idea seemed very improbable to work out, but in the end, we more than “proof-of-concepted” it.</p>
+            <p>Pay good attention to what technologies you use, pay even greater attention to the data you feed your model with. Remember, sharpening the axe is more important than doing a lot of chopping with dull shit.</p>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="contact-info">
+                <a href="mailto:ekaeoq@gmailc.com">Email</a> |
+                <a href="https://twitter.com/ekaeoq" target="_blank">Twitter</a>
+            </span>
+            <span class="copyright">© 2025 Viktor. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>

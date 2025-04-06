@@ -362,3 +362,38 @@ a.blog-button:hover {
         margin-bottom: 10px;
     }
 }
+
+/*OVO bu posebno treblo at some point*/
+.project-flyer {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.project-image {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.project-text {
+    flex-grow: 1;
+}
+
+.project-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.project-title:hover {
+    text-decoration: underline;
+}
+
+.project-description {
+    font-size: 0.9em;
+    color: var(--caption-color);
+    margin-top: 5px;
+}
