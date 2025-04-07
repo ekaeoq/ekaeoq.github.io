@@ -161,6 +161,17 @@
                 document.getElementById(target).classList.add('active');
             });
         });
+		// Set active section based on URL hash
+		const hash = window.location.hash.substring(1);
+		if (hash) {
+			document.querySelectorAll('.content-section').forEach(section => {
+				section.classList.remove('active');
+			});
+			const targetSection = document.getElementById(hash);
+			if (targetSection) {
+				targetSection.classList.add('active');
+			}
+		}
     </script>
 </body>
 </html>
