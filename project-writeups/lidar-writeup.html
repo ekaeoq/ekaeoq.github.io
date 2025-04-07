@@ -9,17 +9,17 @@
 </head>
 <body>
     <header>
-        <img src="files/Untitled.png" alt="Header Image" class="header-image">
+        <img src="../files/header-light.png" alt="Header Image" class="header-image">
     </header>
     <div class="main-container">
         <div class="sidebar">
             <button class="theme-toggle" id="theme-toggle">
-                <img src="files/day-and-night-2.png" alt="Toggle Theme" id="theme-icon">
+                <img src="../files/day-and-night-2.png" alt="Toggle Theme" id="theme-icon">
             </button>
             <div class="tab-bar">
-                <a href="../index.html#home" class="tab-link">Home</a>
-                <a href="../index.html#projects" class="tab-link">Projects</a>
-                <a href="../index.html#tools" class="tab-link">*</a>
+                <a href="../index.html#home" class="tab-link" data-target="home">Home</a>
+                <a href="../index.html#projects" class="tab-link" data-target="projects">Projects</a>
+                <a href="../index.html#tools" class="tab-link" data-target="tools">*</a>
             </div>
         </div>
         <div class="content">
@@ -88,12 +88,12 @@
         function setTheme(theme) {
             if (theme === 'dark') {
                 document.body.classList.add('dark-theme');
-                themeIcon.src = 'files/day-and-night-2.png';
-                headerImage.src = 'files/Untitledblack.png';
+                themeIcon.src = '../files/day-and-night-2.png';
+                headerImage.src = '../files/Untitledblack.png';
             } else {
                 document.body.classList.remove('dark-theme');
-                themeIcon.src = 'files/day-and-night-2.png';
-                headerImage.src = 'files/Untitled.png';
+                themeIcon.src = '../files/day-and-night-2.png';
+                headerImage.src = '../files/Untitled.png';
             }
             localStorage.setItem('theme', theme);
         }
