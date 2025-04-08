@@ -12,7 +12,8 @@
     --footer-text-color: #666666;
     --footer-border-color: #dddddd;
 }
-
+/*darktheme btw idiot glupi mora biti light theme, napisal si toko koda vec, a jos to nisi
+ * zamjenil..... BUMO DOK BU 100000000 lijnija NP, mah niti neznam di kaj ne dela...*/
 body.dark-theme {
     --background-color: black;
     --text-color: #e0e0e0;
@@ -42,26 +43,21 @@ body.article-page.dark-theme {
 
 /* NEZNAM VISE*/
 body.article-page {
-    --text-color: #666; 
+    --text-color: #333; 
 }
 
-body.article-page .dark-theme {
-    --text-color: #aaa; 
+body.dark-theme.article-page {
+    --text-color: #999; 
 }
 
 body.article-page .content h1,
 body.article-page .content p strong {
-    color: blue; 
-}
-
-body.dark-theme .article-page .content h1,
-body.dark-theme .article-page .content p strong {
-    color: red; 
+    color: black; 
 }
 
 body.article-page.dark-theme .content h1,
 body.article-page.dark-theme .content p strong {
-    color: red; 
+    color: #e0e0e0; 
 }
 /* 
 body.article-page {
