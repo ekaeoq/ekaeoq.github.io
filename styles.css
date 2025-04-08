@@ -41,21 +41,46 @@ body.article-page.dark-theme {
 
 
 /* NEZNAM VISE*/
-.article-page .content h1 {
-    color: #333; 
+body.article-page {
+    --text-color: #666; 
 }
 
-body.dark-theme .article-page .content h1 {
+body.article-page .dark-theme {
+    --text-color: #aaa; 
+}
+
+body.article-page .content h1,
+body.article-page .content p strong {
+    color: blue; 
+}
+
+body.dark-theme .article-page .content h1,
+body.dark-theme .article-page .content p strong {
     color: red; 
 }
 
-.article-page .content p strong {
-    color: #333; 
+body.article-page.dark-theme .content h1,
+body.article-page.dark-theme .content p strong {
+    color: red; 
+}
+/* 
+body.article-page {
+    --text-color: #666; 
 }
 
-body.dark-theme .article-page .content p strong {
+body.article-page.dark-theme {
+    --text-color: #aaa; 
+}
+
+body.article-page .content h1,
+body.article-page .content p strong {
     color: blue; 
 }
+
+body.article-page.dark-theme .content h1,
+body.article-page.dark-theme .content p strong {
+    color: red; 
+}*/
 
 /* chatgpt shit - probably good */
 /* context-box = dodaje padding marings border shit + na to usprkos tome da je bounding box manji*/
