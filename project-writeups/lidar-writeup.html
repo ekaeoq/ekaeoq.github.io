@@ -7,7 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
 </head>
-<body>
+<!--TO NEBRE TAK! but good for now-->
+<body class="article-page">
     <header>
         <img src="../files/header-light.png" alt="Header Image" class="header-image">
     </header>
@@ -48,21 +49,21 @@
             <p>You start with a .obj file from a LiDAR scan, basically a bunch of 3D vertices floating in space. The Trimesh library was used to read those .obj files. Next, we went with an approach to turn those vertices into a grayscale height-map. We normalized the highest and lowest points to figure out distances, painting everything in shades of gray (this was important because the AI had to somehow discern where the curb is or isn’t).</p>
             <p>To transform a 3D point cloud into a 2D height map, we conceptually positioned the camera along the z-axis, oriented to provide a top-down view of the scene. This approach involved aligning the virtual viewpoint directly above the point cloud, with the camera’s optical axis parallel to the z-axis (representing height), and subsequently adjusting its orientation to project the 3D coordinates onto the x-y plane.</p>
             <p>To help you visualize this: Imagine you had a cloud of points in your favorite CAD software. With the camera tool, you select the top-down view, essentially removing the z-axis (in our case, our curb height). Now we have an x-y axis grid that we simply “paint” with gray tones, depending on how high or low something is on the z-axis, creating a grid where each point represents the height of that spot.</p>
-            <p>Those generated frames were then filtered and altered with some heavy signal processing, but that’s a topic for another day:)</p>
             <div class="image-gallery">
                 <div class="image-item">
-                    <img src="path/to/image1.jpg" alt="LiDAR Point Cloud">
+                    <img src="../files/lidar1.jpg" alt="LiDAR Point Cloud">
                     <p>Raw LiDAR point cloud before processing</p>
                 </div>
                 <div class="image-item">
-                    <img src="path/to/image2.jpg" alt="Height Map">
+                    <img src="../files/lidar2.jpg" alt="Height Map">
                     <p>Grayscale height map generated from the point cloud</p>
                 </div>
                 <div class="image-item">
-                    <img src="path/to/image3.jpg" alt="Processed Frame">
+                    <img src="../files/lidar3.jpg" alt="Processed Frame">
                     <p>Processed frame with curb detection</p>
                 </div>
             </div>
+            <p>Those generated frames were then filtered and altered with some heavy signal processing, but that’s a topic for another day:)</p>
 
             <p><strong>OUTRO</strong></p>
             <p>This whole thing was a showcase of how important data processing is before you even touch the ML part. Data dictates how well your model performs.</p>

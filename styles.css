@@ -28,6 +28,35 @@ body.dark-theme {
     --footer-border-color: #555555;
 }
 
+/* for the love of god napravi separate file ili nekaj bolje za ovo...*/
+
+body.article-page {
+    --text-color: #333; 
+}
+
+body.article-page.dark-theme {
+    --text-color: #aaa; 
+    --text-color: red; 
+}
+
+
+/* NEZNAM VISE*/
+.article-page .content h1 {
+    color: #333; 
+}
+
+body.dark-theme .article-page .content h1 {
+    color: red; 
+}
+
+.article-page .content p strong {
+    color: #333; 
+}
+
+body.dark-theme .article-page .content p strong {
+    color: blue; 
+}
+
 /* chatgpt shit - probably good */
 /* context-box = dodaje padding marings border shit + na to usprkos tome da je bounding box manji*/
 /* border-box = make sura da je untar bounding box-a taj sav padding+border i svi extra shiti on top*/
