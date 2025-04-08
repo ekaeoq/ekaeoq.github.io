@@ -24,15 +24,16 @@
             </div>
         </div>
         <div class="content">
-            <h1>Depth-Graph LiDAR: Real-Time Curb Detection Using LiDAR</h1>
-            <p><em>2 min read</em></p>
+			<img src="../files/lidar/actual300epoch.png" alt="Banner Placeholder" class="banner-image">
+            <h1>Preprocessing data is everything in ML: Real-Time Curb Detection Using LiDAR</h1>
+            <p>8.4.2025.    <em>2 min read</em></p>
 
             <p><strong>ABSTRACT</strong></p>
             <p>This project explored real-time data transmission and processing for autonomous vehicle mapping using LiDAR. Kafka was used for data streaming, Redis for storage, OpenCV for image processing, and the model used for object detection was YOLOv8 with our heavily preprocessed custom training dataset. A producer-consumer system transmitted 3D vertex data, enabling the detection of curbs.</p>
             <p>We achieved high accuracy after 300 epochs, though we had a lot of synchronization and slow rendering issues. We spent a lot of time optimizing visualisation algorithms with more efficient triangulation. The system effectively simulated LiDAR-based perception, demonstrating potential for autonomous applications, but requires optimization for speed and synchronization.</p>
 
             <p><strong>INTRO</strong></p>
-            <p>As part of my research at the university, this project was a small cog in a bigger machine aimed at making driving safer. I was good at hardware, and I had a friend who was really into LiDAR at the time. We initially settled on using aerial photos from a drone I built back in 2020 (this exists… <a href="https://your-video-link.com" target="_blank">[link to my video]</a>) alongside LiDAR, of course. The ultimate goal was to detect curbs with high accuracy.</p>
+			<p>As part of my research at the university, this project was a small cog in a bigger machine aimed at making driving safer. I was good at hardware, and I had a friend who was really into LiDAR at the time. We initially settled on using aerial photos from a drone I built back in 2020 (<a href="https://youtu.be/JkGbxo-N_7c" target="_blank">this exists..</a>) alongside LiDAR, of course. The ultimate goal was to detect curbs with high accuracy.</p>
             <p>What an interesting topic, right? Detecting goddamn curbs. In reality, it’s a vast, complex subject, especially if you’re into computer geometry. It involves tons of algorithms, notably Convex Hull and Triangulation.</p>
             <p>But let’s start with the bigger picture. The biggest challenge was the constraint we faced with the iPhone. Our baseline was the minimum time it took for an iPhone to deliver a single scan. That scan produced a massive file of vertices that we would then process.</p>
             <p>You can only imagine how “real-time” that felt. Obviously, “real-time system” is doing some heavy lifting here. The concept worked, though, for our demo, we used a prerecorded data stream that fully mimicked a real-time sensor. In comparison, fancy LiDAR devices output data at 10-20Hz, unlike this “one scan per eternity” claptrap.</p>
@@ -61,6 +62,17 @@
                 <div class="image-item">
                     <img src="../files/lidar3.jpg" alt="Processed Frame">
                     <p>Processed frame with curb detection</p>
+                </div>
+				<div class="image-item-pair">
+                    <div class="image-item-small">
+                        <img src="../files/lidar/beforecurb.png" alt="Step 1">
+                        <p>Initial processing step</p>
+                    </div>
+                    <span class="arrow">→</span>
+                    <div class="image-item-small">
+                        <img src="../files/lidar/aftercurb.png" alt="Step 2">
+                        <p>Final processed output</p>
+                    </div>
                 </div>
             </div>
             <p>Those generated frames were then filtered and altered with some heavy signal processing, but that’s a topic for another day:)</p>
