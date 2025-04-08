@@ -26,7 +26,7 @@
         <div class="content">
 			<img src="../files/lidar/actual300epoch.png" alt="Banner Placeholder" class="banner-image">
             <h1>Preprocessing data is everything in ML: Real-Time Curb Detection Using LiDAR</h1>
-            <p>8.4.2025.    <em>2 min read</em></p>
+            <p>8.4.2025.    <em>9 min read</em></p>
 
             <p><strong>ABSTRACT</strong></p>
             <p>This project explored real-time data transmission and processing for autonomous vehicle mapping using LiDAR. Kafka was used for data streaming, Redis for storage, OpenCV for image processing, and the model used for object detection was YOLOv8 with our heavily preprocessed custom training dataset. A producer-consumer system transmitted 3D vertex data, enabling the detection of curbs.</p>
@@ -57,21 +57,21 @@
                 </div>
                 <div class="image-item">
                     <img src="../files/lidar2.jpg" alt="Height Map">
-                    <p>Grayscale height map generated from the point cloud</p>
+                    <p>Oriented x-y plane (virtual camera parallel to z-axis)</p>
                 </div>
                 <div class="image-item">
                     <img src="../files/lidar3.jpg" alt="Processed Frame">
-                    <p>Processed frame with curb detection</p>
+                    <p>Grayscale height map generated from the point cloud</p>
                 </div>
 				<div class="image-item-pair">
                     <div class="image-item-small">
                         <img src="../files/lidar/beforecurb.png" alt="Step 1">
-                        <p>Initial processing step</p>
+						<p>Result <em>before</em> further processing with 169887 vertices</p>
                     </div>
                     <span class="arrow">→</span>
                     <div class="image-item-small">
                         <img src="../files/lidar/aftercurb.png" alt="Step 2">
-                        <p>Final processed output</p>
+						<p>Final result <em>after</em> decimation resulting in 28849 vertices</p>
                     </div>
                 </div>
             </div>
@@ -81,6 +81,7 @@
             <p>This whole thing was a showcase of how important data processing is before you even touch the ML part. Data dictates how well your model performs.</p>
             <p>We sank a ton of time into picking the right tech for our use case. When we pitched the LiDAR idea to our mentors, they thought it was a long shot or improbable, really. But by the end, we didn’t just “proof-of-concept” it; we did it.</p>
             <p>So, pay close attention to the tech you choose, and pay even closer attention to the data you feed your model. Picking the right tools and preprocessing is half the work in ML, maybe more. And as we’ve all heard already: “Sharpening the axe beats the hell out of chopping away with dull shit any day.”</p>
+			<img src="../files/lidar/lmao.avif" alt="Banner Placeholder" class="banner-image">
         </div>
     </div>
     <footer class="footer">
