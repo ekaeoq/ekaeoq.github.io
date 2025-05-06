@@ -1,0 +1,232 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Graph with Space Dust Trail</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+</head>
+<body>
+<script>
+// Array of skills
+let skills = ["Woodworking", "Drawing", "Piano", "Watchmaking", "Math", "Programming"];
+
+// Node radius
+let r = 15;
+
+// Offset between node and label
+let offset = 10;
+
+// Array to store nodes
+let nodes = [];
+
+// Array to store particles
+let particles = [];
+
+// Particle class
+class Particle {
+  constructor(position, velocity, hue) {
+    this.position = position.copy();
+    this.velocity = velocity;
+    this.hue = hue;
+    this.lifespan = 20; // Lifespan in frames
+    this.initialLifespan = this.lifespan;
+    this.size = random(2, 4);
+  }
+
+  update() {
+    this.position.add(this.velocity);
+    this.lifespan--;
+  }
+
+  display() {
+    let alpha = map(this.lifespan, 0, this.initialLifespan, 0, 255);
+    fill(this.hue, 10, 100, alpha); // Light, desaturated color with fade
+    noStroke();
+    circle(this.position.x, this.position.y, this.size);
+  }
+
+  isExpired() {
+    return this.lifespan <= 0;
+  }
+}
+
+function setup() {
+  createCanvas(720, 400);
+  colorMode(HSB);
+  textSize(16);
+  textAlign(LEFT, CENTER);
+
+  // Generate nodes
+  for (let i = 0; i < skills.length; i++) {
+    let skill = skills[i];
+    let position;
+    let boundingBox;
+    let attempts = 0;
+    do {
+      position = createVector(
+        random(r + 20, width - (r + offset + textWidth(skill)) - 20),
+        random(r + 20, height - r - 20)
+      );
+      let labelWidth = textWidth(skill);
+      let left = position.x - r - 20;
+      let right = position.x + r + offset + labelWidth + 20;
+      let top = position.y - r - 10;
+      let bottom = position.y + r + 10;
+      boundingBox = { left, right, top, bottom };
+      attempts++;
+      if (attempts > 100) {
+        console.log("Could not find non-overlapping position after 100 attempts for skill: " + skill);
+        break;
+      }
+    } while (nodes.some(node => boxesOverlap(boundingBox, node.boundingBox)));
+    if (attempts <= 100) {
+      let hue = 200 + i * 5; // Hues from 200 to 225 for pastel blues
+      let ampX = random(2, 5); // Reduced horizontal amplitude
+      let ampY = random(1, 3); // Reduced vertical amplitude
+      nodes.push({
+        initialPosition: position,
+        currentPosition: position.copy(),
+        label: skill,
+        hue,
+        boundingBox,
+        phase: i * TWO_PI / skills.length, // Unique phase for each node
+        ampX,
+        ampY,
+        isDragging: false
+      });
+    }
+  }
+}
+
+function draw() {
+  background(255); // White background
+
+  // Update node positions
+  for (let node of nodes) {
+    if (!node.isDragging) {
+      let angle = frameCount * 0.01 + node.phase; // Slower speed with multiplier 0.01
+      node.currentPosition.x = node.initialPosition.x + node.ampX * sin(angle);
+      node.currentPosition.y = node.initialPosition.y + node.ampY * cos(angle);
+    }
+  }
+
+  // Draw lines between consecutive nodes
+  stroke(0); // Black lines
+  strokeWeight(1);
+  for (let i = 0; i < nodes.length - 1; i++) {
+    line(
+      nodes[i].currentPosition.x,
+      nodes[i].currentPosition.y,
+      nodes[i+1].currentPosition.x,
+      nodes[i+1].currentPosition.y
+    );
+  }
+
+  // Update and draw particles
+  for (let i = particles.length - 1; i >= 0; i--) {
+    particles[i].update();
+    particles[i].display();
+    if (particles[i].isExpired()) {
+      particles.splice(i, 1);
+    }
+  }
+
+  // Draw nodes with glow and labels
+  for (let node of nodes) {
+    // Draw glow
+    fill(node.hue, 25, 45, 100); // Semi-transparent glow
+    noStroke();
+    circle(node.currentPosition.x, node.currentPosition.y, 2 * r + 10); // Smaller glow
+    
+    // Draw node
+    fill(node.hue, 25, 90); // Pastel blue with low saturation
+    circle(node.currentPosition.x, node.currentPosition.y, 2 * r);
+    
+    // Draw label
+    fill(0); // Black text
+    text(node.label, node.currentPosition.x + r + offset, node.currentPosition.y);
+  }
+}
+
+// Handle mouse press to start dragging a node
+function mousePressed() {
+  let mousePos = createVector(mouseX, mouseY);
+  for (let node of nodes) {
+    if (p5.Vector.dist(mousePos, node.currentPosition) < r) {
+      node.isDragging = true;
+      break; // Only drag one node at a time
+    }
+  }
+}
+
+// Handle mouse drag to move the node and emit particles
+function mouseDragged() {
+  for (let node of nodes) {
+    if (node.isDragging) {
+      node.currentPosition.set(mouseX, mouseY);
+      // Emit a particle
+      let velocity = p5.Vector.random2D().mult(random(0.5, 1.5));
+      let particle = new Particle(node.currentPosition, velocity, node.hue);
+      particles.push(particle);
+    }
+  }
+}
+
+// Handle mouse release to stop dragging and update initial position
+function mouseReleased() {
+  for (let node of nodes) {
+    if (node.isDragging) {
+      node.initialPosition.set(node.currentPosition);
+      node.isDragging = false;
+    }
+  }
+}
+
+// Function to check if two bounding boxes overlap (used in setup)
+function boxesOverlap(boxA, boxB) {
+  return boxA.left < boxB.right && boxA.right > boxB.left &&
+         boxA.top < boxB.bottom && boxA.bottom > boxB.top;
+}
+</script>
+</body>
+</html>
