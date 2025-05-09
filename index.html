@@ -176,213 +176,232 @@
             }
         }
     </script>
+<!-- p5.js Animation Script -->
+<script>
+    // Array of skills
+    let skills = ["Woodworking", "Drawing", "Piano", "Watchmaking", "Math", "Programming"];
 
-    <!-- p5.js Animation Script -->
-    <script>
-        // Array of skills
-        let skills = ["Woodworking", "Drawing", "Piano", "Watchmaking", "Math", "Programming"];
+    // Reference width for scaling
+    let referenceWidth = 620;
+    let scaleFactor;
+    let minTextSize = 12;
+    let minR = 10;
 
-        // Node radius
-        let r = 15;
+    // Node radius (will be scaled)
+    let r;
 
-        // Offset between node and label
-        let offset = 10;
+    // Offset between node and label (will be scaled)
+    let offset;
 
-        // Array to store nodes
-        let nodes = [];
+    // Array to store nodes
+    let nodes = [];
 
-        // Array to store particles
-        let particles = [];
+    // Array to store particles
+    let particles = [];
 
-        // Particle class for space dust
-        class Particle {
-            constructor(position, velocity, hue) {
-                this.position = position.copy();
-                this.velocity = velocity;
-                this.hue = hue;
-                this.lifespan = 20; // Fades out over 20 frames
-                this.initialLifespan = this.lifespan;
-                this.size = random(2, 4); // Small size for subtlety
-            }
+    // Particle class for space dust
+    class Particle {
+        constructor(position, velocity, hue) {
+            this.position = position.copy();
+            this.velocity = velocity;
+            this.hue = hue;
+            this.lifespan = 20; // Fades out over 20 frames
+            this.initialLifespan = this.lifespan;
+            this.size = random(2, 4); // Small size for subtlety
+        }
 
-            update() {
-                this.position.add(this.velocity);
-                this.lifespan--;
-            }
+        update() {
+            this.position.add(this.velocity);
+            this.lifespan--;
+        }
 
-            display() {
-                let alpha = map(this.lifespan, 0, this.initialLifespan, 0, 255);
-                fill(this.hue, 10, 100, alpha); // Light, desaturated, fading color
-                noStroke();
-                circle(this.position.x, this.position.y, this.size);
-            }
+        display() {
+            let alpha = map(this.lifespan, 0, this.initialLifespan, 0, 255);
+            fill(this.hue, 10, 100, alpha); // Light, desaturated, fading color
+            noStroke();
+            circle(this.position.x, this.position.y, this.size);
+        }
 
-            isExpired() {
-                return this.lifespan <= 0;
+        isExpired() {
+            return this.lifespan <= 0;
+        }
+    }
+
+    function setup() {
+        let container = select('#animation-container');
+        let containerWidth = container.elt.offsetWidth;
+        let canvasHeight = containerWidth / 2; // Maintain 2:1 aspect ratio
+        let canvas = createCanvas(containerWidth, canvasHeight);
+        canvas.parent(container);
+        colorMode(HSB);
+
+        // Calculate scale factor based on canvas width
+        scaleFactor = containerWidth / referenceWidth;
+        let currentTextSize = max(minTextSize, 16 * scaleFactor);
+        textSize(currentTextSize);
+        r = max(minR, 15 * scaleFactor);
+        offset = 10 * scaleFactor;
+
+        generateNodes();
+    }
+
+    function draw() {
+        // Set background based on theme
+        if (document.body.classList.contains('dark-theme')) {
+            background(0); // Black for dark theme
+        } else {
+            background(255); // White for light theme
+        }
+
+        // Update node positions (floating animation)
+        for (let node of nodes) {
+            if (!node.isDragging) {
+                let angle = frameCount * 0.01 + node.phase;
+                node.currentPosition.x = node.initialPosition.x + node.ampX * sin(angle);
+                node.currentPosition.y = node.initialPosition.y + node.ampY * cos(angle);
             }
         }
 
-        function setup() {
-            let container = select('#animation-container');
-            let containerWidth = container.elt.offsetWidth;
-            let canvasHeight = containerWidth / 2; // Maintain 2:1 aspect ratio
-            let canvas = createCanvas(containerWidth, canvasHeight);
-            canvas.parent(container);
-            colorMode(HSB);
-            textSize(16);
-            textAlign(LEFT, CENTER);
-            generateNodes();
+        // Draw lines between consecutive nodes
+        if (document.body.classList.contains('dark-theme')) {
+            stroke(255); // White lines for dark theme
+        } else {
+            stroke(0); // Black lines for light theme
+        }
+        strokeWeight(1);
+        for (let i = 0; i < nodes.length - 1; i++) {
+            line(
+                nodes[i].currentPosition.x,
+                nodes[i].currentPosition.y,
+                nodes[i + 1].currentPosition.x,
+                nodes[i + 1].currentPosition.y
+            );
         }
 
-        function draw() {
-            // Set background based on theme
-            if (document.body.classList.contains('dark-theme')) {
-                background(0); // Black for dark theme
-            } else {
-                background(255); // White for light theme
+        // Update and draw particles (space dust)
+        for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].update();
+            particles[i].display();
+            if (particles[i].isExpired()) {
+                particles.splice(i, 1);
             }
+        }
 
-            // Update node positions (floating animation)
-            for (let node of nodes) {
-                if (!node.isDragging) {
-                    let angle = frameCount * 0.01 + node.phase;
-                    node.currentPosition.x = node.initialPosition.x + node.ampX * sin(angle);
-                    node.currentPosition.y = node.initialPosition.y + node.ampY * cos(angle);
-                }
-            }
+        // Draw nodes with glow and labels
+        for (let node of nodes) {
+            // Glow effect
+            fill(node.hue, 25, 45, 100);
+            noStroke();
+            circle(node.currentPosition.x, node.currentPosition.y, 2 * r + 10);
 
-            // Draw lines between consecutive nodes
+            // Node
+            fill(node.hue, 25, 90);
+            circle(node.currentPosition.x, node.currentPosition.y, 2 * r);
+
+            // Label
             if (document.body.classList.contains('dark-theme')) {
-                stroke(255); // White lines for dark theme
+                fill(255); // White text for dark theme
             } else {
-                stroke(0); // Black lines for light theme
+                fill(0); // Black text for light theme
             }
-            strokeWeight(1);
-            for (let i = 0; i < nodes.length - 1; i++) {
-                line(
-                    nodes[i].currentPosition.x,
-                    nodes[i].currentPosition.y,
-                    nodes[i+1].currentPosition.x,
-                    nodes[i+1].currentPosition.y
+            text(node.label, node.currentPosition.x + r + offset, node.currentPosition.y);
+        }
+    }
+
+    function mousePressed() {
+        let mousePos = createVector(mouseX, mouseY);
+        for (let node of nodes) {
+            if (p5.Vector.dist(mousePos, node.currentPosition) < r) {
+                node.isDragging = true;
+                break;
+            }
+        }
+    }
+
+    function mouseDragged() {
+        for (let node of nodes) {
+            if (node.isDragging) {
+                node.currentPosition.set(mouseX, mouseY);
+                // Emit a space dust particle
+                let velocity = p5.Vector.random2D().mult(random(0.5, 1.5));
+                let particle = new Particle(node.currentPosition, velocity, node.hue);
+                particles.push(particle);
+            }
+        }
+    }
+
+    function mouseReleased() {
+        for (let node of nodes) {
+            if (node.isDragging) {
+                node.initialPosition.set(node.currentPosition);
+                node.isDragging = false;
+            }
+        }
+    }
+
+    function windowResized() {
+        let container = select('#animation-container');
+        let containerWidth = container.elt.offsetWidth;
+        let canvasHeight = containerWidth / 2;
+        resizeCanvas(containerWidth, canvasHeight);
+
+        // Recalculate scale factor and update sizes
+        scaleFactor = containerWidth / referenceWidth;
+        let currentTextSize = max(minTextSize, 16 * scaleFactor);
+        textSize(currentTextSize);
+        r = max(minR, 15 * scaleFactor);
+        offset = 10 * scaleFactor;
+
+        generateNodes();
+    }
+
+    function generateNodes() {
+        nodes = [];
+        for (let i = 0; i < skills.length; i++) {
+            let skill = skills[i];
+            let position;
+            let boundingBox;
+            let attempts = 0;
+            do {
+                position = createVector(
+                    random(r + 20 * scaleFactor, width - (r + offset + textWidth(skill)) - 20 * scaleFactor),
+                    random(r + 20 * scaleFactor, height - r - 20 * scaleFactor)
                 );
-            }
-
-            // Update and draw particles (space dust)
-            for (let i = particles.length - 1; i >= 0; i--) {
-                particles[i].update();
-                particles[i].display();
-                if (particles[i].isExpired()) {
-                    particles.splice(i, 1);
-                }
-            }
-
-            // Draw nodes with glow and labels
-            for (let node of nodes) {
-                // Glow effect
-                fill(node.hue, 25, 45, 100);
-                noStroke();
-                circle(node.currentPosition.x, node.currentPosition.y, 2 * r + 10);
-                
-                // Node
-                fill(node.hue, 25, 90);
-                circle(node.currentPosition.x, node.currentPosition.y, 2 * r);
-                
-                // Label
-                if (document.body.classList.contains('dark-theme')) {
-                    fill(255); // White text for dark theme
-                } else {
-                    fill(0); // Black text for light theme
-                }
-                text(node.label, node.currentPosition.x + r + offset, node.currentPosition.y);
-            }
-        }
-
-        function mousePressed() {
-            let mousePos = createVector(mouseX, mouseY);
-            for (let node of nodes) {
-                if (p5.Vector.dist(mousePos, node.currentPosition) < r) {
-                    node.isDragging = true;
+                let labelWidth = textWidth(skill);
+                let left = position.x - r - 20 * scaleFactor;
+                let right = position.x + r + offset + labelWidth + 20 * scaleFactor;
+                let top = position.y - r - 10 * scaleFactor;
+                let bottom = position.y + r + 10 * scaleFactor;
+                boundingBox = { left, right, top, bottom };
+                attempts++;
+                if (attempts > 100) {
+                    console.log("Could not find non-overlapping position after 100 attempts for skill: " + skill);
                     break;
                 }
+            } while (nodes.some(node => boxesOverlap(boundingBox, node.boundingBox)));
+            if (attempts <= 100) {
+                let hue = 200 + i * 5; // Pastel blues from hue 200 to 225
+                let ampX = random(2, 5) * scaleFactor;
+                let ampY = random(1, 3) * scaleFactor;
+                nodes.push({
+                    initialPosition: position,
+                    currentPosition: position.copy(),
+                    label: skill,
+                    hue,
+                    boundingBox,
+                    phase: i * TWO_PI / skills.length,
+                    ampX,
+                    ampY,
+                    isDragging: false
+                });
             }
         }
+    }
 
-        function mouseDragged() {
-            for (let node of nodes) {
-                if (node.isDragging) {
-                    node.currentPosition.set(mouseX, mouseY);
-                    // Emit a space dust particle
-                    let velocity = p5.Vector.random2D().mult(random(0.5, 1.5));
-                    let particle = new Particle(node.currentPosition, velocity, node.hue);
-                    particles.push(particle);
-                }
-            }
-        }
-
-        function mouseReleased() {
-            for (let node of nodes) {
-                if (node.isDragging) {
-                    node.initialPosition.set(node.currentPosition);
-                    node.isDragging = false;
-                }
-            }
-        }
-
-        function windowResized() {
-            let container = select('#animation-container');
-            let containerWidth = container.elt.offsetWidth;
-            let canvasHeight = containerWidth / 2;
-            resizeCanvas(containerWidth, canvasHeight);
-            generateNodes();
-        }
-
-        function generateNodes() {
-            nodes = [];
-            for (let i = 0; i < skills.length; i++) {
-                let skill = skills[i];
-                let position;
-                let boundingBox;
-                let attempts = 0;
-                do {
-                    position = createVector(
-                        random(r + 20, width - (r + offset + textWidth(skill)) - 20),
-                        random(r + 20, height - r - 20)
-                    );
-                    let labelWidth = textWidth(skill);
-                    let left = position.x - r - 20;
-                    let right = position.x + r + offset + labelWidth + 20;
-                    let top = position.y - r - 10;
-                    let bottom = position.y + r + 10;
-                    boundingBox = { left, right, top, bottom };
-                    attempts++;
-                    if (attempts > 100) {
-                        console.log("Could not find non-overlapping position after 100 attempts for skill: " + skill);
-                        break;
-                    }
-                } while (nodes.some(node => boxesOverlap(boundingBox, node.boundingBox)));
-                if (attempts <= 100) {
-                    let hue = 200 + i * 5; // Pastel blues from hue 200 to 225
-                    let ampX = random(2, 5);
-                    let ampY = random(1, 3);
-                    nodes.push({
-                        initialPosition: position,
-                        currentPosition: position.copy(),
-                        label: skill,
-                        hue,
-                        boundingBox,
-                        phase: i * TWO_PI / skills.length,
-                        ampX,
-                        ampY,
-                        isDragging: false
-                    });
-                }
-            }
-        }
-
-        function boxesOverlap(boxA, boxB) {
-            return boxA.left < boxB.right && boxA.right > boxB.left &&
-                   boxA.top < boxB.bottom && boxA.bottom > boxB.top;
-        }
-    </script>
+    function boxesOverlap(boxA, boxB) {
+        return boxA.left < boxB.right && boxA.right > boxB.left &&
+               boxA.top < boxB.bottom && boxA.bottom > boxB.top;
+    }
+</script>
 </body>
 </html>
