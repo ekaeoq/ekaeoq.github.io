@@ -495,4 +495,10 @@ a.blog-button:hover {
 .arrow {
     font-size: 24px;
     color: var(--text-color);
+} 
+
+#animation-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
