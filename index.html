@@ -224,52 +224,14 @@
 
         function setup() {
             let container = select('#animation-container');
-            let canvas = createCanvas(620, 300);
+            let containerWidth = container.elt.offsetWidth;
+            let canvasHeight = containerWidth / 2; // Maintain 2:1 aspect ratio
+            let canvas = createCanvas(containerWidth, canvasHeight);
             canvas.parent(container);
             colorMode(HSB);
             textSize(16);
             textAlign(LEFT, CENTER);
-
-            // Generate nodes
-            for (let i = 0; i < skills.length; i++) {
-                let skill = skills[i];
-                let position;
-                let boundingBox;
-                let attempts = 0;
-                do {
-                    position = createVector(
-                        random(r + 20, width - (r + offset + textWidth(skill)) - 20),
-                        random(r + 20, height - r - 20)
-                    );
-                    let labelWidth = textWidth(skill);
-                    let left = position.x - r - 20;
-                    let right = position.x + r + offset + labelWidth + 20;
-                    let top = position.y - r - 10;
-                    let bottom = position.y + r + 10;
-                    boundingBox = { left, right, top, bottom };
-                    attempts++;
-                    if (attempts > 100) {
-                        console.log("Could not find non-overlapping position after 100 attempts for skill: " + skill);
-                        break;
-                    }
-                } while (nodes.some(node => boxesOverlap(boundingBox, node.boundingBox)));
-                if (attempts <= 100) {
-                    let hue = 200 + i * 5; // Pastel blues from hue 200 to 225
-                    let ampX = random(2, 5);
-                    let ampY = random(1, 3);
-                    nodes.push({
-                        initialPosition: position,
-                        currentPosition: position.copy(),
-                        label: skill,
-                        hue,
-                        boundingBox,
-                        phase: i * TWO_PI / skills.length,
-                        ampX,
-                        ampY,
-                        isDragging: false
-                    });
-                }
-            }
+            generateNodes();
         }
 
         function draw() {
@@ -362,6 +324,57 @@
                 if (node.isDragging) {
                     node.initialPosition.set(node.currentPosition);
                     node.isDragging = false;
+                }
+            }
+        }
+
+        function windowResized() {
+            let container = select('#animation-container');
+            let containerWidth = container.elt.offsetWidth;
+            let canvasHeight = containerWidth / 2;
+            resizeCanvas(containerWidth, canvasHeight);
+            generateNodes();
+        }
+
+        function generateNodes() {
+            nodes = [];
+            for (let i = 0; i < skills.length; i++) {
+                let skill = skills[i];
+                let position;
+                let boundingBox;
+                let attempts = 0;
+                do {
+                    position = createVector(
+                        random(r + 20, width - (r + offset + textWidth(skill)) - 20),
+                        random(r + 20, height - r - 20)
+                    );
+                    let labelWidth = textWidth(skill);
+                    let left = position.x - r - 20;
+                    let right = position.x + r + offset + labelWidth + 20;
+                    let top = position.y - r - 10;
+                    let bottom = position.y + r + 10;
+                    boundingBox = { left, right, top, bottom };
+                    attempts++;
+                    if (attempts > 100) {
+                        console.log("Could not find non-overlapping position after 100 attempts for skill: " + skill);
+                        break;
+                    }
+                } while (nodes.some(node => boxesOverlap(boundingBox, node.boundingBox)));
+                if (attempts <= 100) {
+                    let hue = 200 + i * 5; // Pastel blues from hue 200 to 225
+                    let ampX = random(2, 5);
+                    let ampY = random(1, 3);
+                    nodes.push({
+                        initialPosition: position,
+                        currentPosition: position.copy(),
+                        label: skill,
+                        hue,
+                        boundingBox,
+                        phase: i * TWO_PI / skills.length,
+                        ampX,
+                        ampY,
+                        isDragging: false
+                    });
                 }
             }
         }
