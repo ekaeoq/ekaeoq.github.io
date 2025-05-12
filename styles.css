@@ -292,9 +292,15 @@ header {
     color: #7f8c8d;
 }
 
-.narrow-text {
+.narrow-text1{
     max-width: 90%;
-    margin: 0 auto;
+    margin: 0 auto; 
+	font-style: italic;
+}
+
+.narrow-text2{
+    max-width: 99%;
+    margin: 0 auto; 
 }
 
 .text-shift {
@@ -501,4 +507,10 @@ a.blog-button:hover {
     width: 100%;
     max-width: 100%;
     overflow: hidden;
+}
+
+#nonce {
+	text-align: center;
+	text-size: 11px;
+	text-style: italic;
 }
