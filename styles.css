@@ -421,6 +421,7 @@ a.blog-button:hover {
 }
 
 /*OVO bu posebno treblo at some point*/
+/*PRJOECT PAGE - project thumbnail*/
 .project-flyer {
     display: flex;
     align-items: center;
@@ -454,6 +455,36 @@ a.blog-button:hover {
     color: var(--caption-color);
     margin-top: 5px;
 }
+
+.project-tags {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/*PRJOECT PAGE - project TAGS*/
+
+.tag {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.75em;
+    font-weight: 500;
+    color: var(--caption-color);
+    border-radius: 12px;
+    background: rgba(180, 180, 180, 0.15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.tag:hover {
+    background: rgba(180, 180, 180, 0.3);
+    transform: translateY(-2px);
+}
+
 /* Banner Image */
 .banner-image {
     width: 100%;
