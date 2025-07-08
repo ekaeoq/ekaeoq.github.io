@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Keyboard Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="article-page">
+    <header>
+        <img src="../files/header-light.png" alt="Header Image" class="header-image">
+    </header>
+    <div class="main-container">
+        <div class="sidebar">
+            <button class="theme-toggle" id="theme-toggle">
+                <img src="../files/day-and-night-2.png" alt="Toggle Theme" id="theme-icon">
+            </button>
+            <div class="tab-bar">
+                <a href="../index.html#home" class="tab-link" data-target="home">Home</a>
+                <a href="../index.html#projects" class="tab-link" data-target="projects">Projects</a>
+                <a href="../index.html#tools" class="tab-link" data-target="tools">*</a>
+            </div>
+        </div>
+        <div class="content">
+            <img src="../files/split_keyboard/test1.jpg" alt="Banner Placeholder" class="banner-image">
+            <h1>Split Keyboard</h1>
+            <p>8.4.2025.      <em>9 min read</em></p>
+
+            <p><strong>INTRO</strong></p>
+            <p>At the very beginning of the year, 12 hours into the New Year, I broke my wrist mountain biking, even after taking the bandage off, using a regular keyboard was painful enough to make me seriously reconsider the way I typed.</p>
+            <p>Looking at all the split keyboard options quickly made me realise how overpriced everything was, and it was then that I decided to make one of my own. As with anything, the process is actually pretty straightforward once you break it down:</p>
+            <ul>
+                <li>take it apart</li>
+                <li>draw and measure the PCB</li>
+                <li>model the PCB and test the fit</li>
+                <li>design the keyboard case</li>
+            </ul>
+
+            <p><strong>ABOUT THE PROCESS</strong></p>
+				<div class="image-gallery">
+					<div class="image-item">
+						<img src="../files/split_keyboard/DSC05554.jpg" alt="LiDAR Point Cloud">
+						<p style="margin-bottom: 0;">Measuring everything out</p>
+					</div>
+                </div>
+                <p><strong>Step 1: Take the keyboard apart</strong></p>
+                <p>Pretty straightforward.</p>
+
+                <p><strong>Step 2: Draw and measure everything</strong></p>
+                <p>Honestly, this is my favourite part of my projects in general. I really like drawing, I really like sketching, and using cool calipers to measure everything. I think sketching things out on paper helps most people, but paper’s kind of a dying breed these days. Manually drawing takes way more time than just modeling everything directly in CAD and measuring as I go, but I find myself enjoying it quite a lot so, I’ll keep it analog.</p>
+				<div class="image-gallery">
+					<div class="image-item">
+						<img src="../files/split_keyboard/DSC05557.jpg" alt="LiDAR Point Cloud">
+						<p style="margin-bottom: 0;">Hand-drawn technical drawing</p>
+					</div>
+                </div>
+
+
+                <p><strong>Step 3: CADin’ everything up</strong></p>
+                <p>The next step, though, is easily the most annoying. It takes a lot of iteration to get a perfect fit. You're never going to get it exact, but you try to get as close as possible, and that takes time, considering printing times. The worst part is once you finally get to your desired tolerances, everything fits, and only then you realise that the chinese pcb is off on the left half of the keyboard.</p>
+				<div class="image-gallery">
+					<div class="image-item">
+						<img src="../files/split_keyboard/DSC05639.jpg" alt="LiDAR Point Cloud">
+						<p style="margin-bottom: 0;">Additional pieces for an airtight fit</p>
+					</div>
+                </div>
+
+                <p><strong>Step 4: Designing the case</strong></p>
+                <p>Once you have the fitment for the keyboard, everything else is easy. You can do whatever you want, however you want. I honestly have not spent too much time dwelling on the design and just did whatever was the fastest. In retrospect, I could have done a better job, but there’s always version 2.</p>
+            <p><strong>FILES (download .stl || .f3d)</strong></p>
+			    <p>Follow this link to: <a href="https://github.com/ekaeoq/Split-kybr" target="_blank" rel="noopener noreferrer">View Project on GitHub</a></p>
+            <p><strong>TAKEAWAY FROM THIS PROJECT</strong></p>
+			<p>The most important thing here is that nothing is stopping you from building your own thing. If you can imagine it, you can make it. You don’t need to sell it or show it off. You can build things just for you. Today, 3D printers are cheaper than ever. Whether you’re using a €150 printer or a Bambu one, what matters is to play around with your thoughts: sketch them, model this, print that, build it. Make something you’re proud of and make it yours.</p>
+				<div class="image-gallery">
+					<div class="image-item">
+						<img src="../files/split_keyboard/test2.jpg" alt="LiDAR Point Cloud">
+						<p style="margin-bottom: 0;">It's up to you, anon</p>
+					</div>
+                </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <span class="contact-info">
+                <a href="mailto:ekaeoq@gmailc.com">Email</a> |
+                <a href="https://twitter.com/ekaeoq" target="_blank">Twitter</a>
+            </span>
+            <span class="copyright">© 2025 Viktor. All rights reserved.</span>
+        </div>
+    </footer>
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const headerImage = document.querySelector('.header-image');
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeIcon.src = '../files/day-and-night-2.png';
+                headerImage.src = '../files/Untitledblack.png';
+            } else {
+                document.body.classList.remove('dark-theme');
+                themeIcon.src = '../files/day-and-night-2.png';
+                headerImage.src = '../files/Untitled.png';
+            }
+            localStorage.setItem('theme', theme);
+        }
+
+        // Apply Saved Theme on Page Load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+
+        // Toggle Theme on Button Click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+        });
+    </script>
+</body>
+</html>
